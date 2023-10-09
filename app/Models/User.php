@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
 
     public function adminlte_image(){
-        return "https://pixabay.com/get/g632ffcbac2fbe3311130478b5a73a155fb51b7305a21028427f0c5c80a9c3400e22f75730f4f84e642a5192104466c8567c45091b5c95ee9ae968010ef1c14c60394b3e354d3f3c45bc5e978c081405a_640.jpg";
+        return "https://images.pexels.com/photos/18022350/pexels-photo-18022350/free-photo-of-blanco-y-negro-hombre-modelo-en-pie.jpeg?auto=compress&cs=tinysrgb&w=160&h=160&dpr=1";
     }
 
     public function adminlte_desc(){
