@@ -14,8 +14,11 @@ use App\Http\Controllers\Auth\GoogleController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('home');
+// });
 Route::get('/', function () {
-    return view('home');
+    return view('panel.index');
 });
 
 Route::get('/login/google',[App\Http\Controllers\GoogleLoginController::class,'redirect'])->name('login.google-redirect');
@@ -24,4 +27,7 @@ Route::get('/login/google/callback',[App\Http\Controllers\GoogleLoginController:
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', function () {
+    return view('panel.index');
+})->name('home');
