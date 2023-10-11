@@ -17,9 +17,12 @@ use App\Http\Controllers\Auth\GoogleController;
 // Route::get('/', function () {
 //     return view('home');
 // });
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('panel.index');
-});
+    return view('galeria.index');
+    });
 
 Route::get('/login/google',[App\Http\Controllers\GoogleLoginController::class,'redirect'])->name('login.google-redirect');
 
@@ -31,3 +34,4 @@ Auth::routes();
 Route::get('/home', function () {
     return view('panel.index');
 })->name('home');
+
