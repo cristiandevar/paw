@@ -291,6 +291,15 @@ return [
     */
 
     'menu' => [
+
+        [
+            'text' => 'Lista de Productos',
+            'route' => 'product.index',
+            //'url' => 'panel/productos', // Otro ejemplo de como especificar la ruta
+            'icon' => 'fas fa-store', // icono de fontawesome
+            // 'can' => 'lista_productos' // permiso del vendedor
+            ],
+        
         // Navbar items:
         [
             'type'         => 'navbar-search',
@@ -384,6 +393,7 @@ return [
             'icon_color' => 'cyan',
             'url'        => '#',
         ],
+
     ],
 
     /*
