@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\PDF;
+use App\Models\Product;
 use App\Models\Category;
-
+use Barryvdh\DomPDF\Facade\PDF;
+use App\Exports\ProductsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -150,5 +151,9 @@ class ProductController extends Controller
 
         return $pdf->download('lista de productos.pdf');
 
+    }
+
+    public function exportExcel(){
+        return Excel::download(new ProductsExport, 'products.xlsx');
     }
 }

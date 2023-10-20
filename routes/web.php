@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +41,9 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::get('generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
+Route::get('products-excel', [ProductController::class, 'exportExcel'])->name('products-excel');
 
+Route::controller(UserController::class)->group(function(){
+    Route::get('users', 'index');
+    Route::get('users-export', 'export')->name('users.export');
+});
