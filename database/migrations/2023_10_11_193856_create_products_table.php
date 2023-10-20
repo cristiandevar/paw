@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image', 100); // VARCHAR(100)
             $table->unsignedBigInteger('category_id'); // BIGINT(20)
             $table->unsignedBigInteger('seller_id'); // BIGINT(20)
+            $table->boolean('active');
             // Creamos la FK "categoria_id" que hace referencia al "id" de la tabla "categorias"
             $table->foreign('category_id')->references('id')->on('categories');
             // Creamos la FK "vendedor_id" que hace referencia al "id" de la tabla "users"

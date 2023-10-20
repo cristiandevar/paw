@@ -298,7 +298,12 @@ return [
             //'url' => 'panel/productos', // Otro ejemplo de como especificar la ruta
             'icon' => 'fas fa-store', // icono de fontawesome
             // 'can' => 'lista_productos' // permiso del vendedor
-            ],
+        ],
+        [
+            'text' => 'Generar PDF',
+            'route' => 'generate-pdf',
+            'icon' => 'far fa-file-pdf',
+        ],
         
         // Navbar items:
         [

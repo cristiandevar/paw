@@ -18,6 +18,9 @@
             <a href="{{ route('product.create') }}" class="btn btn-success text-uppercase">
                 Nuevo Producto
             </a>
+            <a href="{{ route('products-list-pdf') }}">
+                <i class="far fa-file-pdf"></i>
+            </a>
         </div>
         
         @if(session('alert'))
@@ -79,7 +82,7 @@
                     </table>
                 @else
                     <p class="alert alert-danger">
-                        Ud no tien productos cargados
+                        Ud no tiene productos cargados
                     </p>
                 @endif
             </div>

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\PDFController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,4 +36,6 @@ Auth::routes();
 Route::get('/home', function () {
     return view('panel.index');
 })->name('home');
+
+Route::get('generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
 

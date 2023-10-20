@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::resource('/products', ProductController::class)->names('product');
+Route::get('products-pdf',[App\Http\Controllers\ProductController::class, 'generatePDF'])->name('products-list-pdf');
