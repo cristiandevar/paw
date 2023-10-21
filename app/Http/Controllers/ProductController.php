@@ -17,6 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::where('seller_id', auth()->user()->id)
+            ->where('active', 1)
             ->latest() // Ordena de manera DESC por el campo "created_at"
             ->get(); // Convierte los datos extraidos de la BD en un Array
         // Retornamos una vista y enviamos la variable "productos"
@@ -55,26 +56,22 @@ class ProductController extends Controller
         } else {
         $product->image = '';
         }
-        if (!$request->active){
+        if ($request->active==''){
             $product->active = 0;
-            dd('El producto NO ESTA activo');
         }
         else{
             if ($request->get('active') == 'on'){
                 $product->active = 1;
-                dd('El producto ESTA activo');
             }
-            else {
-                $product->active = 0;
-                dd('El producto NO ESTA activo');
+            else{
+                dd('ERROR to insert product');
             }
-            
         }
         // Almacena la info del product en la BD
         $product->save();
         return redirect()
-        ->route('product.index')
-->with('alert', 'Producto "' . $product->name . '" agregado exitosamente.');
+            ->route('product.index')
+            ->with('alert', 'Producto "' . $product->name . '" agregado exitosamente.');
     }
 
     /**

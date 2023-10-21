@@ -43,7 +43,7 @@
             <div class="mb-3 row">
                 <label for="active" class="col-sm-4 col-form-label"> * Activo </label>
                 <div class="col-sm-1">
-                    <input type="checkbox" id="active" name="active" value="{{ old('active', $product->active ? 'on' : '') }}" {{ $product->active ? 'checked' : ''}}>
+                    <input type="checkbox" id="active" name="active" {{ $product->active ? 'checked' : ''}}>
                 </div>
             </div>
 
