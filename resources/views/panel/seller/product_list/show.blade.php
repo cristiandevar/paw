@@ -36,6 +36,11 @@
                     <div class="mb-3">
                         <p>Creado por {{ $product->seller->name }}.</p>
                     </div>
+                    <div class="mb-3">
+                        <a href="{{ route('product.edit', $product) }}" class="btn btn-sm btn-warning text-white text-uppercase me-1">
+                            Editar
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

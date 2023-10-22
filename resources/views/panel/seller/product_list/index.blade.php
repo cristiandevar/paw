@@ -80,7 +80,7 @@
                                         <form action="{{ route('product.destroy', $product) }}" method="POST">
                                             @csrf 
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger text-uppercase">
+                                            <button type="submit" onClick="confirmAlert()" class="btn btn-sm btn-danger text-uppercase">
                                                 Eliminar
                                             </button>
                                         </form>
@@ -142,5 +142,26 @@
     $(function() {
         table = $('#tabla-productos').DataTable(configurationDataTable);
     });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>    
+    $('.btn-danger').on('click', function(e) {
+    e.preventDefault();
+    var form = $(this).parents('form');
+    Swal.fire({
+        title: '¿Estás seguro que deseas eliminar este registro?',
+        text: "No podrás recuperar los datos después de eliminarlos.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarlo!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+});
 </script>
 @stop

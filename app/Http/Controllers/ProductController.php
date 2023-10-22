@@ -8,6 +8,8 @@ use App\Models\Category;
 use Barryvdh\DomPDF\Facade\PDF;
 use App\Exports\ProductsExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
+
 
 class ProductController extends Controller
 {
@@ -101,9 +103,14 @@ class ProductController extends Controller
         $product->price = $request->get('price');
         $product->category_id = $request->get('category_id');
         if ($request->hasFile('image')) {
-        // Subida de la image nueva al servidor
-        $image_url = $request->file('image')->store('public/product');
-        $product->image = asset(str_replace('public', 'storage', $image_url));
+            // No pudimos determinar la manera de saber si la imagen ya habia sido cargada
+            
+            // Eliminamos la imagen del servidor
+            ProductController::deleteImage($product->image);
+            
+            // Subida de la image nueva al servidor
+            $image_url = $request->file('image')->store('public/product');
+            $product->image = asset(str_replace('public', 'storage', $image_url));
         }
         if ($request->active == 'on'){
             $product->active = 1;
@@ -126,6 +133,8 @@ class ProductController extends Controller
     {
         // $product->delete();
         $product->active = False;
+        // Eliminamos la imagen del servidor
+        ProductController::deleteImage($product->image);
         $product->save();
         return redirect()
         ->route('product.index')
@@ -153,4 +162,18 @@ class ProductController extends Controller
     public function exportExcel(){
         return Excel::download(new ProductsExport, 'products.xlsx');
     }
+
+    private function deleteImage(string $path){
+        //Primero determinamos si la path corresponde a una imagen almacenada en el servidor
+        if ( Str::contains($path, asset('')) ) {
+            // Tuvimos que generar una ruta absoluta quitando la direccion del servidor primero
+            $image_old_url = str_replace(asset(''), public_path().'/', $path);
+   
+            // Luego reemplazamos las barras \ por / 
+            $image_old_url = str_replace("\\","/", $image_old_url);
+            
+            // Por ultimo eliminamos la imagen antes cargada.
+            unlink($image_old_url);
+        }
+    } 
 }
