@@ -42,6 +42,7 @@ Route::get('/home', function () {
 
 Route::get('generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
 Route::get('products-excel', [ProductController::class, 'exportExcel'])->name('products-excel');
+Route::get('contact-email', [User::class, 'contactEmail'])->name('contact-email');
 
 Route::controller(UserController::class)->group(function(){
     Route::get('users', 'index');

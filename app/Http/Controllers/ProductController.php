@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\Category;
 use Barryvdh\DomPDF\Facade\PDF;
 use App\Exports\ProductsExport;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
 
@@ -35,7 +37,7 @@ class ProductController extends Controller
         $product = new Product();
 
         // Recuperamos todas las categorias de la BD
-        $categories = Category::get(); // Recordar importar el modelo Categoria!!
+        $categories = Category::get()->where('active', 1); // Recordar importar el modelo Categoria!!
         // Retornamos la vista de creacion de productos, enviamos el producto y las categorias
         return view('panel.seller.product_list.create', compact('product', 'categories'));
     }
@@ -121,6 +123,17 @@ class ProductController extends Controller
 
         // Actualiza la info del product en la BD
         $product->update();
+
+        $data = array(
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email,
+            'producto_nombre' => $product->name,
+            'producto_descripcion' => $product->description,
+            'producto_precio' => $product->price
+            );
+            Mail::to($data['email'])->send(new SendMail($data));
+            
+
         return redirect()
         ->route('product.index')
         ->with('alert', 'Producto "' .$product->name. '" actualizado exitosamente.');

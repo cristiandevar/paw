@@ -300,9 +300,9 @@ return [
             // 'can' => 'lista_productos' // permiso del vendedor
         ],
         [
-            'text' => 'Generar PDF',
-            'route' => 'generate-pdf',
-            'icon' => 'far fa-file-pdf',
+            'text' => 'Contacto',
+            'route' => 'contact',
+            'icon' => 'fas fa-envelope',
         ],
         
         // Navbar items:
