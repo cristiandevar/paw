@@ -311,11 +311,12 @@ return [
             'icon' => 'fas fa-shopping-cart', // icono de fontawesome
             'can' => 'shopps_list', // permiso del cliente
         ],
-        // [
-        //     'text' => 'Contacto',
-        //     'route' => 'contact',
-        //     'icon' => 'fas fa-envelope',
-        // ],
+        [
+            'text' => 'Contacto',
+            'route' => 'user-contact',
+            'icon' => 'fas fa-envelope',
+            'can' => 'shopps_list',
+        ],
         // Navbar items:
         // [
         //     'type'         => 'navbar-search',

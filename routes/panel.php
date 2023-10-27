@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,5 +13,10 @@ Route::get('/', function () {
 // });
 Route::resource('/products', ProductController::class)->names('product');
 
+Route::resource('/users', UserController::class)->names('user');
 
-Route::get('products-pdf',[App\Http\Controllers\ProductController::class, 'generatePDF'])->name('products-list-pdf');
+Route::get('products-pdf',[ProductController::class, 'generatePDF'])->name('products-list-pdf');
+
+Route::get('contact',[UserController::class, 'contact'])->name('user-contact');
+
+Route::post('send-email',[UserController::class, 'sendEmail'])->name('send-email');
