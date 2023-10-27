@@ -80,7 +80,7 @@
                                         <form action="{{ route('product.destroy', $product) }}" method="POST">
                                             @csrf 
                                             @method('DELETE')
-                                            <button type="submit" onClick="confirmAlert()" class="btn btn-sm btn-danger text-uppercase">
+                                            <button type="submit" class="btn btn-sm btn-danger text-uppercase eliminar">
                                                 Eliminar
                                             </button>
                                         </form>
@@ -145,7 +145,7 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>    
-    $('.btn-danger').on('click', function(e) {
+    $('.eliminar').on('click', function(e) {
     e.preventDefault();
     var form = $(this).parents('form');
     Swal.fire({

@@ -25,7 +25,7 @@ class ProductController extends Controller
             ->latest() // Ordena de manera DESC por el campo "created_at"
             ->get(); // Convierte los datos extraidos de la BD en un Array
         // Retornamos una vista y enviamos la variable "productos"
-        return view('panel.seller.product_list.index', compact('products'));
+        return view('panel.seller.products_list.index', compact('products'));
     }
 
     /**
@@ -39,7 +39,7 @@ class ProductController extends Controller
         // Recuperamos todas las categorias de la BD
         $categories = Category::get()->where('active', 1); // Recordar importar el modelo Categoria!!
         // Retornamos la vista de creacion de productos, enviamos el producto y las categorias
-        return view('panel.seller.product_list.create', compact('product', 'categories'));
+        return view('panel.seller.products_list.create', compact('product', 'categories'));
     }
 
     /**
@@ -166,7 +166,7 @@ class ProductController extends Controller
             'content' => $products
         ];
 
-        $pdf = PDF::loadView('panel.seller.product_list.productsPDF', $data);
+        $pdf = PDF::loadView('panel.seller.products_list.productsPDF', $data);
 
         return $pdf->download('lista de productos.pdf');
 

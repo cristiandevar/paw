@@ -4,6 +4,8 @@
     <h1>Programando con Laravel 10</h1>
 @stop
 @section('content')
+    <p>{{auth()->user()->hasRole('seller')}}</p>
+    <p>{{auth()->user()->can('products_list') }}</p>
     <p>HOLA MUNDO DE ADMIN LTE</p>
     <div class="container border p-2 m-2">
         <h3>Titulo 1</h3>
